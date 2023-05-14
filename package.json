@@ -1,0 +1,27 @@
+{
+  "name": "buildsystemwithwebpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js",
+    "build": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.29.1",
+    "glob": "^10.2.3",
+    "gulp": "^4.0.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-shell": "^0.8.0",
+    "gulp-terser": "^2.1.0",
+    "gulp-twig": "^1.2.0",
+    "htmlmin": "^0.0.7",
+    "rimraf": "^5.0.0",
+    "rollup": "^3.21.6",
+    "sass": "^1.62.1"
+  }
+}

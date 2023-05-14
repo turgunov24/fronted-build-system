@@ -1,0 +1,49 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const glob = require("glob");
+const path = require("path");
+
+const twigFiles = glob.sync("./src/views/pages/**/*.twig");
+
+const htmlPlugins = twigFiles.map((file) => {
+  const fileName = path.basename(file, ".twig");
+  return new HtmlWebpackPlugin({
+    template: file,
+    filename: `../${fileName}.html`,
+  });
+});
+
+module.exports = {
+  mode: "production",
+  entry: glob.sync("./src/views/pages/**/*.js").map(file => "./" + file),
+  output: {
+    filename: "[name].js",
+    path: __dirname + "/dist/js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
+      },
+      {
+        test: /\.twig$/,
+        use: {
+          loader: "twig-loader",
+          options: {
+            // See options section below
+          },
+        },
+      },
+    ],
+  },
+  plugins: [...htmlPlugins],
+};
+
+console.log(glob.sync("./src/views/**/*.js").map(file => "./" + file.replace("\\","/")));
